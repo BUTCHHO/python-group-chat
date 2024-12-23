@@ -25,7 +25,7 @@ def create_account(_cursor: sqlite3.Cursor,data):
         _cursor.execute("""INSERT OR IGNORE INTO accounts (name, password) VALUES (?, ?)""", (data['name'], data['password'],))
 
 def login_account(_cursor: sqlite3.Cursor, data):
-    user_id = _cursor.execute("""SELECT id FROM accounts WHERE name = ? AND password = ? AND isLogged = 'false' """, (data['name'], data['password'])).fetchone()
+    user_id = _cursor.execute("""SELECT id FROM accounts WHERE name = ? AND password = ? AND isLogged = 'false' """, (data['name'], data['password'])).fetchone()[0]
     # print(f'data {data['name']}, password {data['password']}')
     # print('user ',user_id)
     if user_id != None:
